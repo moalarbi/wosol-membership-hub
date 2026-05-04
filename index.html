@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-lang="ar">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>WOSOL Concierge · Membership Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════════
+   RESET & ROOT
+══════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --n:#041026; --n2:#16304E; --n3:#1F466D;
+  --gold:#B99A5B; --gold2:#D4B570; --gold3:rgba(185,154,91,.14);
+  --cream:#EDE9E3; --sand:#D1C7BA;
+  --bg:#F6F4F1; --w:#FFFFFF; --t:#2A3A50; --m:#6A7280;
+  --br:rgba(4,16,38,.09);
+  --pat:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%23D1C7BA' stroke-width='.5' opacity='.04'%3E%3Cpath d='M30 5L55 30L30 55L5 30Z'/%3E%3Cpath d='M30 18L42 30L30 42L18 30Z'/%3E%3Cline x1='30' y1='0' x2='30' y2='60'/%3E%3Cline x1='0' y1='30' x2='60' y2='30'/%3E%3C/g%3E%3C/svg%3E");
+}
+html{font-size:16px;scroll-behavior:smooth;}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg);color:var(--t);line-height:1.7;-webkit-font-smoothing:antialiased;}
+.en{font-family:'Poppins',sans-serif!important;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+
+/* ── LANGUAGE SWITCH ── */
+.te{display:block;} .ta{display:none;}
+[data-lang="en"] .te{display:none;} [data-lang="en"] .ta{display:block;}
+[data-lang="en"]{direction:ltr;}
+[data-lang="en"] body,[data-lang="en"] p,[data-lang="en"] li,[data-lang="en"] h1,[data-lang="en"] h2,[data-lang="en"] h3{font-family:'Poppins',sans-serif;}
+
+/* ══════════════════════════════════════════
+   NAV
+══════════════════════════════════════════ */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(4,16,38,.97);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(209,199,186,.1);
+  padding:0 40px;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{display:flex;flex-direction:column;gap:2px;text-decoration:none;}
+.nl-w{font-family:'Poppins',sans-serif;font-size:17px;font-weight:600;letter-spacing:.2em;color:var(--sand);}
+.nl-s{font-family:'Poppins',sans-serif;font-size:7px;letter-spacing:.32em;text-transform:uppercase;color:rgba(209,199,186,.35);}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-link{font-size:13px;font-weight:500;color:rgba(237,233,227,.45);padding:8px 14px;border-radius:999px;transition:all .2s;cursor:pointer;}
+.nav-link:hover{color:var(--sand);background:rgba(255,255,255,.05);}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.lang-toggle{
+  font-family:'Poppins',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;
+  color:var(--gold);border:1px solid rgba(185,154,91,.3);padding:7px 16px;
+  background:rgba(185,154,91,.08);cursor:pointer;transition:all .2s;
+}
+.lang-toggle:hover{background:rgba(185,154,91,.18);}
+.nav-cta{
+  font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;letter-spacing:.06em;
+  background:var(--gold);color:var(--n);padding:9px 22px;transition:all .25s;
+}
+.nav-cta:hover{background:var(--gold2);transform:translateY(-1px);}
+.hbtn{display:none;flex-direction:column;gap:5px;padding:8px;cursor:pointer;}
+.hbtn span{display:block;width:22px;height:1.5px;background:var(--sand);}
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+.hero{
+  background:var(--n);position:relative;overflow:hidden;
+  min-height:92vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:80px 24px;
+}
+.hero::before{content:'';position:absolute;inset:0;background-image:var(--pat);}
+.hero-ring{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  border-radius:50%;border:1px solid rgba(209,199,186,.05);pointer-events:none;
+}
+.hero-in{position:relative;z-index:1;max-width:820px;margin:0 auto;}
+.hero-eyebrow{
+  font-family:'Poppins',sans-serif;font-size:9.5px;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--gold);opacity:.75;
+  margin-bottom:24px;display:block;
+}
+.hero-title{
+  font-size:clamp(32px,5.5vw,62px);font-weight:700;
+  color:var(--cream);line-height:1.2;letter-spacing:-.01em;
+  margin-bottom:6px;
+}
+[data-lang="en"] .hero-title{letter-spacing:-.02em;}
+.hero-title-sub{
+  font-family:'Poppins',sans-serif;font-size:clamp(18px,2.8vw,28px);
+  font-weight:300;letter-spacing:.14em;color:var(--gold);
+  margin-bottom:24px;display:block;
+}
+.hero-div{width:52px;height:1px;background:var(--gold);margin:20px auto 28px;opacity:.4;}
+.hero-sub{
+  font-size:clamp(15px,2vw,18px);font-weight:300;
+  color:rgba(237,233,227,.52);line-height:1.85;
+  max-width:600px;margin:0 auto 44px;
+}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--gold);color:var(--n);
+  font-size:15px;font-weight:700;padding:16px 36px;
+  transition:all .25s;letter-spacing:.04em;
+}
+.hero-cta:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(185,154,91,.3);}
+.hero-trust{
+  display:flex;gap:32px;justify-content:center;flex-wrap:wrap;
+  margin-top:48px;
+}
+.hero-trust-item{
+  display:flex;align-items:center;gap:8px;
+  font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;color:rgba(237,233,227,.38);
+}
+.hero-trust-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:.6;}
+
+/* ══════════════════════════════════════════
+   SHARED ELEMENTS
+══════════════════════════════════════════ */
+.section{padding:80px 24px;}
+.section-dark{background:var(--n);position:relative;overflow:hidden;}
+.section-dark::before{content:'';position:absolute;inset:0;background-image:var(--pat);}
+.section-dark>.wrap{position:relative;z-index:1;}
+.section-light{background:var(--bg);}
+.section-white{background:var(--w);}
+.section-cream{background:var(--cream);}
+.wrap{max-width:1160px;margin:0 auto;}
+
+.sec-label{
+  font-family:'Poppins',sans-serif;font-size:9px;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block;
+}
+.sec-label-d{color:rgba(185,154,91,.55);}
+.sec-title{font-size:clamp(24px,3.5vw,36px);font-weight:700;color:var(--t);line-height:1.3;margin-bottom:8px;}
+.sec-title-d{font-size:clamp(24px,3.5vw,36px);font-weight:700;color:var(--cream);line-height:1.3;margin-bottom:8px;}
+.sec-sub{font-size:15px;font-weight:300;color:var(--m);margin-bottom:36px;max-width:600px;line-height:1.8;}
+.sec-sub-d{font-size:15px;font-weight:300;color:rgba(237,233,227,.48);margin-bottom:36px;max-width:600px;line-height:1.8;}
+.gold-div{width:36px;height:2px;background:var(--gold);margin-bottom:32px;}
+
+.kl{
+  background:var(--gold3);border-right:3px solid var(--gold);
+  padding:16px 22px;font-size:15px;font-weight:600;
+  color:var(--t);line-height:1.8;margin-top:20px;
+}
+.kld{
+  background:rgba(185,154,91,.09);border-right:3px solid var(--gold);
+  padding:16px 22px;font-size:15px;font-weight:600;
+  color:var(--cream);line-height:1.8;margin-top:20px;
+}
+
+/* ── GRIDS ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+
+/* ── CARDS ── */
+.card{
+  background:var(--w);border:1px solid var(--br);
+  padding:28px 24px;position:relative;transition:all .25s;
+}
+.card::before{
+  content:'';position:absolute;top:0;right:0;width:3px;height:30px;
+  background:var(--gold);
+}
+.card:hover{box-shadow:0 6px 24px rgba(4,16,38,.08);transform:translateY(-2px);}
+.card-d{
+  background:rgba(255,255,255,.04);border:1px solid rgba(209,199,186,.1);
+  padding:28px 24px;position:relative;transition:all .25s;
+}
+.card-d::before{content:'';position:absolute;top:0;right:0;width:3px;height:30px;background:var(--gold);}
+.card-d:hover{background:rgba(255,255,255,.07);}
+.card-tag{
+  font-family:'Poppins',sans-serif;font-size:8.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:block;
+}
+.card-title{font-size:16px;font-weight:700;color:var(--t);margin-bottom:8px;}
+.card-title-d{font-size:16px;font-weight:700;color:var(--sand);margin-bottom:8px;}
+.card-body{font-size:13.5px;font-weight:300;color:var(--m);line-height:1.75;}
+.card-body-d{font-size:13.5px;font-weight:300;color:rgba(237,233,227,.55);line-height:1.75;}
+
+/* ══════════════════════════════════════════
+   PHILOSOPHY FEELINGS
+══════════════════════════════════════════ */
+.feel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.feel-card{
+  background:var(--w);border:1px solid var(--br);
+  padding:24px 20px;position:relative;overflow:hidden;transition:all .25s;
+}
+.feel-card::after{
+  content:'';position:absolute;bottom:0;right:0;left:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold));
+  opacity:0;transition:opacity .25s;
+}
+.feel-card:hover{box-shadow:0 8px 28px rgba(4,16,38,.09);transform:translateY(-3px);}
+.feel-card:hover::after{opacity:1;}
+.feel-num{
+  font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;
+  color:var(--gold);margin-bottom:10px;display:block;letter-spacing:.1em;
+}
+.feel-title{font-size:16px;font-weight:700;color:var(--t);margin-bottom:8px;}
+.feel-body{font-size:13px;font-weight:300;color:var(--m);line-height:1.75;}
+
+/* ══════════════════════════════════════════
+   MEMBERSHIP TIERS
+══════════════════════════════════════════ */
+.tiers-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+
+/* Premier */
+.tier-premier{
+  background:var(--bg);border:1px solid var(--br);border-top:4px solid var(--n2);
+  padding:40px 32px;position:relative;
+}
+/* Black */
+.tier-black{
+  background:var(--n);position:relative;overflow:hidden;
+  border:1px solid rgba(209,199,186,.12);border-top:4px solid var(--n3);
+  padding:40px 32px;
+}
+.tier-black::before{content:'';position:absolute;inset:0;background-image:var(--pat);}
+.tier-black>.tier-inner{position:relative;z-index:1;}
+/* Imperial */
+.tier-imperial{
+  background:linear-gradient(160deg,#010810 0%,#0a1628 60%,#041026 100%);
+  border:1px solid rgba(185,154,91,.2);border-top:4px solid var(--gold);
+  padding:40px 32px;position:relative;overflow:hidden;
+}
+.tier-imperial::before{content:'';position:absolute;inset:0;background-image:var(--pat);}
+.tier-imperial>.tier-inner{position:relative;z-index:1;}
+
+.tier-badge{
+  font-family:'Poppins',sans-serif;font-size:8px;letter-spacing:.22em;
+  text-transform:uppercase;padding:4px 12px;display:inline-block;margin-bottom:14px;
+}
+.tbadge-p{background:rgba(22,48,78,.1);color:var(--n2);border:1px solid rgba(22,48,78,.2);}
+.tbadge-b{background:rgba(185,154,91,.1);color:var(--gold);border:1px solid rgba(185,154,91,.2);}
+.tbadge-i{background:rgba(185,154,91,.15);color:var(--gold2);border:1px solid rgba(185,154,91,.3);}
+
+.tier-name{font-size:28px;font-weight:700;margin-bottom:6px;letter-spacing:.04em;}
+.tier-name-p{color:var(--n2);}
+.tier-name-b{color:var(--cream);font-family:'Poppins',sans-serif;}
+.tier-name-i{color:var(--sand);font-family:'Poppins',sans-serif;}
+
+.tier-target{font-size:13px;margin-bottom:20px;line-height:1.7;}
+.tier-target-p{color:var(--m);}
+.tier-target-b{color:rgba(237,233,227,.5);}
+.tier-target-i{color:rgba(209,199,186,.45);}
+
+.tier-div{height:1px;margin:20px 0;}
+.tdiv-p{background:var(--br);}
+.tdiv-b{background:rgba(209,199,186,.1);}
+.tdiv-i{background:rgba(185,154,91,.18);}
+
+.tier-meta{
+  display:flex;flex-direction:column;gap:12px;margin-bottom:24px;
+}
+.tm-item{display:flex;align-items:flex-start;gap:10px;}
+.tm-lbl{
+  font-family:'Poppins',sans-serif;font-size:9px;letter-spacing:.12em;
+  text-transform:uppercase;flex-shrink:0;margin-top:2px;
+}
+.tm-lbl-p{color:var(--n3);}
+.tm-lbl-b{color:var(--gold);}
+.tm-lbl-i{color:var(--gold2);}
+.tm-val{font-size:13px;font-weight:500;}
+.tm-val-p{color:var(--t);}
+.tm-val-b{color:var(--cream);}
+.tm-val-i{color:var(--sand);}
+
+.tier-features{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.tf{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.65;}
+.tf-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:7px;}
+.tfd-p{background:var(--n2);}
+.tfd-b{background:var(--gold);}
+.tfd-i{background:var(--gold2);}
+.tf-p{color:var(--t);}
+.tf-b{color:rgba(237,233,227,.65);}
+.tf-i{color:rgba(209,199,186,.55);}
+
+/* Imperial restricted badge */
+.restricted-badge{
+  font-family:'Poppins',sans-serif;font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold);
+  border:1px solid rgba(185,154,91,.3);padding:5px 14px;
+  display:inline-block;margin-top:16px;
+}
+
+/* ══════════════════════════════════════════
+   COMPARISON TABLE (Old vs New)
+══════════════════════════════════════════ */
+.cmp-table{width:100%;border-collapse:collapse;}
+.cmp-table thead tr{background:var(--n);}
+.cmp-table thead th{
+  padding:14px 18px;text-align:right;
+  font-family:'Poppins',sans-serif;font-size:11px;font-weight:600;
+  color:rgba(237,233,227,.8);letter-spacing:.04em;
+}
+.cmp-table tbody tr{border-bottom:1px solid var(--br);}
+.cmp-table tbody tr:nth-child(even){background:var(--cream);}
+.cmp-table tbody tr:nth-child(odd){background:var(--w);}
+.cmp-table td{padding:13px 18px;font-size:13px;color:var(--t);line-height:1.6;vertical-align:top;}
+.cmp-table td:first-child{font-weight:700;white-space:nowrap;}
+.cmp-table td.new-col{color:var(--n2);font-weight:600;}
+.check{color:var(--gold);font-size:16px;}
+.dash{color:rgba(106,114,128,.4);}
+
+/* ══════════════════════════════════════════
+   BENEFITS MATRIX
+══════════════════════════════════════════ */
+.matrix-table{width:100%;border-collapse:collapse;}
+.matrix-table thead tr{background:var(--n);}
+.matrix-table thead th{
+  padding:13px 16px;text-align:center;
+  font-family:'Poppins',sans-serif;font-size:11px;font-weight:600;
+  color:rgba(237,233,227,.8);
+}
+.matrix-table thead th:first-child{text-align:right;}
+.matrix-table tbody tr{border-bottom:1px solid var(--br);}
+.matrix-table tbody tr:nth-child(even){background:var(--cream);}
+.matrix-table tbody tr:nth-child(odd){background:var(--w);}
+.matrix-table td{padding:12px 16px;font-size:13px;color:var(--t);text-align:center;vertical-align:middle;}
+.matrix-table td:first-child{text-align:right;font-weight:600;}
+.mcheck{font-size:18px;}
+.mcheck-p{color:var(--n2);}
+.mcheck-b{color:var(--n3);}
+.mcheck-i{color:var(--gold);}
+
+/* ══════════════════════════════════════════
+   ADMISSION TIMELINE
+══════════════════════════════════════════ */
+.timeline{display:flex;flex-direction:column;gap:0;}
+.tl-item{
+  display:flex;gap:20px;align-items:flex-start;
+  position:relative;padding-bottom:28px;
+}
+.tl-item::before{
+  content:'';position:absolute;
+  right:25px;top:36px;bottom:0;width:1px;
+  background:linear-gradient(to bottom,rgba(185,154,91,.3),transparent);
+}
+.tl-item:last-child::before{display:none;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-left{flex-shrink:0;display:flex;flex-direction:column;align-items:center;width:52px;}
+.tl-dot{
+  width:12px;height:12px;border-radius:50%;background:var(--gold);
+  box-shadow:0 0 0 4px rgba(185,154,91,.15);position:relative;z-index:1;margin-top:5px;
+}
+.tl-num{
+  font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;
+  color:var(--gold);margin-top:6px;
+}
+.tl-content{flex:1;}
+.tl-en{
+  font-family:'Poppins',sans-serif;font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:5px;display:block;
+}
+.tl-title{font-size:16px;font-weight:700;color:var(--t);margin-bottom:5px;}
+.tl-body{font-size:13px;font-weight:300;color:var(--m);line-height:1.75;}
+
+/* ══════════════════════════════════════════
+   KPI SECTION
+══════════════════════════════════════════ */
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--br);}
+.kpi-cell{
+  background:var(--w);padding:36px 24px;text-align:center;
+  transition:all .25s;
+}
+.kpi-cell:hover{background:var(--n);}
+.kpi-cell:hover .kpi-val,.kpi-cell:hover .kpi-lbl,.kpi-cell:hover .kpi-name{color:rgba(237,233,227,.7);}
+.kpi-cell:hover .kpi-val{color:var(--gold);}
+.kpi-val{
+  font-family:'Poppins',sans-serif;font-size:40px;font-weight:300;
+  color:var(--n2);display:block;margin-bottom:6px;
+  transition:color .25s;
+}
+.kpi-lbl{
+  font-family:'Poppins',sans-serif;font-size:8.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:block;
+  transition:color .25s;
+}
+.kpi-name{font-size:13.5px;font-weight:500;color:var(--t);transition:color .25s;}
+
+/* ══════════════════════════════════════════
+   RESEARCH SOURCES
+══════════════════════════════════════════ */
+.sources-summary{
+  background:var(--n);border:1px solid rgba(209,199,186,.1);
+  padding:32px;margin-bottom:28px;
+}
+.sources-stats{display:flex;gap:32px;flex-wrap:wrap;margin-top:20px;}
+.src-stat{text-align:center;}
+.src-stat-n{
+  font-family:'Poppins',sans-serif;font-size:28px;font-weight:300;
+  color:var(--gold);display:block;
+}
+.src-stat-l{font-size:12px;color:rgba(237,233,227,.4);}
+
+details{margin-bottom:12px;}
+summary{
+  background:var(--w);border:1px solid var(--br);
+  padding:14px 20px;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:14px;font-weight:600;color:var(--t);
+  transition:background .2s;list-style:none;
+}
+summary::-webkit-details-marker{display:none;}
+summary::after{
+  content:'＋';font-family:'Poppins',sans-serif;
+  font-size:16px;color:var(--gold);transition:transform .3s;
+}
+details[open] summary::after{content:'－';}
+details[open] summary{background:var(--cream);}
+.src-list{
+  background:var(--w);border:1px solid var(--br);border-top:none;
+  padding:20px;
+}
+.src-item{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:10px 0;border-bottom:1px solid var(--br);
+}
+.src-item:last-child{border-bottom:none;}
+.src-item-badge{
+  font-family:'Poppins',sans-serif;font-size:8px;letter-spacing:.12em;
+  text-transform:uppercase;padding:3px 10px;flex-shrink:0;
+}
+.sb-comp{background:rgba(4,16,38,.08);color:var(--n2);border:1px solid rgba(4,16,38,.12);}
+.sb-art{background:var(--gold3);color:#7a6535;border:1px solid rgba(185,154,91,.2);}
+.sb-wos{background:rgba(22,48,78,.1);color:var(--n2);border:1px solid rgba(22,48,78,.2);}
+.sb-rpt{background:rgba(237,233,227,.6);color:var(--m);border:1px solid var(--br);}
+.src-item-title{font-size:13.5px;font-weight:600;color:var(--t);margin-bottom:2px;}
+.src-item-desc{font-size:12.5px;color:var(--m);line-height:1.65;}
+.src-link{
+  font-family:'Poppins',sans-serif;font-size:10px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--gold);margin-top:5px;display:inline-block;
+  border:1px solid rgba(185,154,91,.25);padding:3px 10px;transition:all .2s;
+}
+.src-link:hover{background:var(--gold3);}
+
+/* ══════════════════════════════════════════
+   CTA SECTION
+══════════════════════════════════════════ */
+.cta-box{
+  background:var(--n);position:relative;overflow:hidden;
+  padding:72px 40px;text-align:center;
+}
+.cta-box::before{content:'';position:absolute;inset:0;background-image:var(--pat);}
+.cta-inner{position:relative;z-index:1;max-width:600px;margin:0 auto;}
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+.footer{
+  background:linear-gradient(180deg,#010810 0%,var(--n) 100%);
+  padding:52px 40px 32px;
+  border-top:1px solid rgba(185,154,91,.12);
+}
+.footer-inner{max-width:1160px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+.footer-brand .nl-w{font-size:18px;}
+.footer-brand .nl-s{font-size:7.5px;}
+.footer-tagline{font-size:13.5px;color:rgba(237,233,227,.38);line-height:1.8;margin-top:12px;max-width:280px;}
+.footer-col-title{
+  font-family:'Poppins',sans-serif;font-size:9px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block;
+}
+.footer-links{display:flex;flex-direction:column;gap:10px;}
+.footer-links a{font-size:13.5px;color:rgba(237,233,227,.38);transition:color .2s;}
+.footer-links a:hover{color:var(--sand);}
+.footer-bottom{
+  border-top:1px solid rgba(209,199,186,.08);padding-top:24px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.footer-copy{font-family:'Poppins',sans-serif;font-size:11.5px;color:rgba(209,199,186,.2);}
+
+/* ══════════════════════════════════════════
+   DIVIDERS
+══════════════════════════════════════════ */
+.div-line{height:1px;background:var(--br);max-width:1160px;margin:0 auto;}
+
+/* ══════════════════════════════════════════
+   QUOTE CALLOUT
+══════════════════════════════════════════ */
+.quote-band{
+  background:var(--n2);padding:48px 40px;text-align:center;
+}
+.quote-text{
+  font-size:clamp(18px,2.5vw,24px);font-weight:500;
+  color:var(--cream);line-height:1.8;max-width:820px;margin:0 auto;
+  font-style:italic;
+}
+.quote-sig{
+  font-family:'Poppins',sans-serif;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);margin-top:16px;display:block;
+  opacity:.7;
+}
+
+/* ══════════════════════════════════════════
+   MOBILE
+══════════════════════════════════════════ */
+@media(max-width:1024px){
+  .tiers-wrap{grid-template-columns:1fr;}
+  .feel-grid{grid-template-columns:1fr 1fr;}
+  .kpi-grid{grid-template-columns:1fr 1fr 1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  .nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .hbtn{display:flex;}
+  .section{padding:56px 20px;}
+  .g2,.g3,.g4{grid-template-columns:1fr;}
+  .feel-grid{grid-template-columns:1fr;}
+  .kpi-grid{grid-template-columns:1fr 1fr;}
+  .footer-top{grid-template-columns:1fr;}
+  .footer{padding:40px 20px 24px;}
+  .cta-box{padding:48px 24px;}
+}
+@media(max-width:480px){
+  .kpi-grid{grid-template-columns:1fr;}
+  .hero{padding:60px 20px;}
+}
+@media print{
+  .nav,.hbtn{display:none!important;}
+  body{background:#fff;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav class="nav" id="topNav">
+  <a href="#" class="nav-logo">
+    <span class="nl-w">WOSOL</span>
+    <span class="nl-s">CONCIERGE</span>
+  </a>
+  <div class="nav-links">
+    <span class="nav-link te" onclick="scroll2('philosophy')">الفلسفة</span>
+    <span class="nav-link ta" onclick="scroll2('philosophy')">Philosophy</span>
+    <span class="nav-link te" onclick="scroll2('tiers')">العضويات</span>
+    <span class="nav-link ta" onclick="scroll2('tiers')">Memberships</span>
+    <span class="nav-link te" onclick="scroll2('admission')">القبول</span>
+    <span class="nav-link ta" onclick="scroll2('admission')">Admission</span>
+    <span class="nav-link te" onclick="scroll2('kpi')">المؤشرات</span>
+    <span class="nav-link ta" onclick="scroll2('kpi')">KPIs</span>
+    <span class="nav-link te" onclick="scroll2('research')">المصادر</span>
+    <span class="nav-link ta" onclick="scroll2('research')">Research</span>
+  </div>
+  <div class="nav-right">
+    <button class="lang-toggle en" id="langBtn">EN</button>
+    <a href="#contact" class="nav-cta te">ابدأ رحلتك</a>
+    <a href="#contact" class="nav-cta ta">Begin Journey</a>
+  </div>
+  <div class="hbtn" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="hero">
+  <div class="hero-ring" style="width:700px;height:700px;"></div>
+  <div class="hero-ring" style="width:500px;height:500px;"></div>
+  <div class="hero-ring" style="width:300px;height:300px;"></div>
+  <div class="hero-in">
+    <span class="hero-eyebrow en">WOSOL CONCIERGE · MEMBERSHIP HUB · EXECUTIVE REFERENCE · 2026</span>
+    <h1 class="hero-title te">منظومة عضويات وُصُول كونسيرج</h1>
+    <h1 class="hero-title ta en">WOSOL Membership System</h1>
+    <span class="hero-title-sub en">Membership Hub</span>
+    <div class="hero-div"></div>
+    <p class="hero-sub te">
+      مرجع تنفيذي متكامل لتطوير نظام عضويات وُصُول —<br/>
+      من اشتراك تقليدي إلى علاقة شراكة استراتيجية طويلة الأمد<br/>
+      مبنية على الثقة، الحصرية، والفهم العميق لأصحاب الثروات العالية.
+    </p>
+    <p class="hero-sub ta">
+      An executive reference for developing the WOSOL membership system —<br/>
+      from a traditional subscription to a long-term strategic partnership<br/>
+      built on trust, exclusivity, and deep understanding of ultra-high-net-worth clients.
+    </p>
+    <a href="#tiers" class="hero-cta te" onclick="scroll2('tiers');return false;">
+      استكشف العضويات ←
+    </a>
+    <a href="#tiers" class="hero-cta ta" onclick="scroll2('tiers');return false;">
+      Explore Memberships →
+    </a>
+    <div class="hero-trust">
+      <div class="hero-trust-item"><span class="hero-trust-dot"></span><span class="te">3 مستويات حصرية</span><span class="ta">3 Exclusive Tiers</span></div>
+      <div class="hero-trust-item"><span class="hero-trust-dot"></span><span class="te">نظام قبول بالترشيح</span><span class="ta">Admission by Recommendation</span></div>
+      <div class="hero-trust-item"><span class="hero-trust-dot"></span><span class="te">ذكاء استباقي مخصص</span><span class="ta">Proactive Intelligence</span></div>
+      <div class="hero-trust-item"><span class="hero-trust-dot"></span><span class="te">+40 مصدر بحثي عالمي</span><span class="ta">40+ Global Research Sources</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PHILOSOPHY ══ -->
+<section class="section section-light" id="philosophy">
+  <div class="wrap">
+    <span class="sec-label en">Membership Philosophy</span>
+    <h2 class="sec-title te">فلسفة العضوية — نبيع شعوراً، لا خدمة</h2>
+    <h2 class="sec-title ta">Membership Philosophy — We Sell a Feeling, Not a Service</h2>
+    <div class="gold-div"></div>
+    <p class="sec-sub te">
+      في وُصُول، لا تُقدَّم العضوية كاشتراك تقليدي، بل كعلاقة طويلة الأمد تقوم على الثقة والحصرية والتخصيص والاستمرارية.
+      نصبح شريكًا استراتيجيًا موثوقًا وامتدادًا لمكتبك الخاص.
+    </p>
+    <p class="sec-sub ta">
+      At WOSOL, membership is not a traditional subscription — it is a long-term relationship built on trust, exclusivity, and continuity.
+      We become a trusted strategic partner and an extension of your personal office.
+    </p>
+
+    <div class="feel-grid">
+      <div class="feel-card">
+        <span class="feel-num en">01</span>
+        <div class="feel-title te">راحة البال</div>
+        <div class="feel-title ta">Peace of Mind</div>
+        <p class="feel-body te">Lifestyle Manager مخصص يتنبأ باحتياجاتك قبل أن تطلبها، ويتولى كل التفاصيل بدقة صامتة.</p>
+        <p class="feel-body ta">A dedicated Lifestyle Manager anticipates your needs before you ask, handling every detail with quiet precision.</p>
+      </div>
+      <div class="feel-card">
+        <span class="feel-num en">02</span>
+        <div class="feel-title te">الخصوصية والأمان</div>
+        <div class="feel-title ta">Privacy & Security</div>
+        <p class="feel-body te">سياسة صفر أثر رقمي لأعضاء Black وImperial، مع قنوات تواصل مشفرة واتفاقيات سرية صارمة.</p>
+        <p class="feel-body ta">Zero digital footprint policy for Black and Imperial members, with encrypted channels and strict confidentiality agreements.</p>
+      </div>
+      <div class="feel-card">
+        <span class="feel-num en">03</span>
+        <div class="feel-title te">الفهم الشخصي</div>
+        <div class="feel-title ta">Personal Understanding</div>
+        <p class="feel-body te">Client Intelligence Profile يجمع تفضيلاتك، مناسباتك، ومواعيدك — ثم يترجمها إلى اقتراحات قبل وقتها.</p>
+        <p class="feel-body ta">A Client Intelligence Profile captures your preferences, occasions, and key dates — translating them into proactive suggestions.</p>
+      </div>
+      <div class="feel-card">
+        <span class="feel-num en">04</span>
+        <div class="feel-title te">الفخامة الهادئة</div>
+        <div class="feel-title ta">Quiet Luxury</div>
+        <p class="feel-body te">لا إفراط في العرض ولا ضجيج. تجربة راقية تنقلها البساطة والذوق الرفيع في كل تفصيلة.</p>
+        <p class="feel-body ta">No excess, no noise. A refined experience conveyed through simplicity and impeccable taste in every detail.</p>
+      </div>
+      <div class="feel-card">
+        <span class="feel-num en">05</span>
+        <div class="feel-title te">السيطرة والوضوح</div>
+        <div class="feel-title ta">Control & Clarity</div>
+        <p class="feel-body te">لوحة تحكم مبسطة تُظهر حالة الطلبات والسفر في نظرة واحدة — مع خط مباشر لمدير الحياة الخاص بك.</p>
+        <p class="feel-body ta">A simplified dashboard showing request status and travel in a single view — with a direct line to your Lifestyle Manager.</p>
+      </div>
+      <div class="feel-card">
+        <span class="feel-num en">06</span>
+        <div class="feel-title te">الوصول الحصري</div>
+        <div class="feel-title ta">Exclusive Access</div>
+        <p class="feel-body te">تجارب خاصة للأعضاء فقط — فعاليات نادرة، حجوزات لا تتاح للعامة، وصول لم يُمنح من قبل.</p>
+        <p class="feel-body ta">Member-only experiences — rare events, reservations unavailable to the public, access never before granted.</p>
+      </div>
+      <div class="feel-card">
+        <span class="feel-num en">07</span>
+        <div class="feel-title te">التميز والهيبة</div>
+        <div class="feel-title ta">Status & Prestige</div>
+        <p class="feel-body te">العضوية تُرشَّح ولا تُشترى. القبول بعد تقييم نمط الحياة يمنح الانتماء إحساسًا بالندرة الحقيقية.</p>
+        <p class="feel-body ta">Membership is recommended, not purchased. Acceptance after a lifestyle assessment gives membership a sense of true rarity.</p>
+      </div>
+      <div class="feel-card">
+        <span class="feel-num en">08</span>
+        <div class="feel-title te">التوفير النفسي</div>
+        <div class="feel-title ta">Mental Economy</div>
+        <p class="feel-body te">تقرير سنوي "Year in Review" يُظهر لك كم وُفِّر من وقتك وجهدك — قيمة ملموسة لا مجرد وعود.</p>
+        <p class="feel-body ta">An annual "Year in Review" report shows exactly how much time and effort was saved — tangible value, not just promises.</p>
+      </div>
+      <div class="feel-card">
+        <span class="feel-num en">09</span>
+        <div class="feel-title te">التذكير الاستباقي</div>
+        <div class="feel-title ta">Proactive Reminders</div>
+        <p class="feel-body te">إشعارات ذكية قبل المناسبات والمواعيد المهمة — نكون جاهزين قبل أن تتذكر أنك بحاجة إلينا.</p>
+        <p class="feel-body ta">Smart notifications before important occasions and dates — we're ready before you remember you need us.</p>
+      </div>
+    </div>
+
+    <div class="kl" style="margin-top:32px;">
+      <span class="te">"عضويات وُصُول لا تُختار من قائمة… بل تُرشَّح بعد فهم نمط حياة العميل، مستوى الخصوصية، وحجم الدعم الذي يحتاجه."</span>
+      <span class="ta">"WOSOL memberships are not chosen from a list — they are recommended after understanding the client's lifestyle, privacy level, and the scope of support they require."</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ QUOTE BAND ══ -->
+<div class="quote-band">
+  <p class="quote-text te">
+    «نحن لا نبيع خدمة، بل نبيع حياة أسهل. وُصُول يصبح شريكًا في حياتك — يتعلم منك، يتقدم أمامك، ويكون حاضرًا قبل أن تحتاجه.»
+  </p>
+  <p class="quote-text ta">
+    "We don't sell a service — we sell an easier life. WOSOL becomes a partner in your life — learning from you, staying ahead, and being present before you need us."
+  </p>
+  <span class="quote-sig en">WOSOL Concierge · Membership Philosophy</span>
+</div>
+
+<!-- ══ MEMBERSHIP TIERS ══ -->
+<section class="section section-light" id="tiers">
+  <div class="wrap">
+    <span class="sec-label en">Membership Tiers</span>
+    <h2 class="sec-title te">ثلاث طبقات حصرية — لكل نمط حياة مستواه</h2>
+    <h2 class="sec-title ta">Three Exclusive Tiers — Each Lifestyle Has Its Level</h2>
+    <div class="gold-div"></div>
+    <p class="sec-sub te">
+      كل عضوية مُصممة بعناية لفئة محددة من العملاء. المدخل الوحيد هو التقييم والترشيح — وليس الاختيار المباشر.
+    </p>
+    <p class="sec-sub ta">
+      Each membership is carefully designed for a specific client profile. The only entry point is assessment and recommendation — not direct selection.
+    </p>
+
+    <div class="tiers-wrap">
+
+      <!-- PREMIER -->
+      <div class="tier-premier">
+        <div class="tier-inner">
+          <span class="tier-badge tbadge-p en">Individual · UHNW</span>
+          <div class="tier-name tier-name-p en">WOSOL<br>PREMIER</div>
+          <p class="tier-target tier-target-p te">
+            صُممت لأصحاب الثروات العالية جدًا الذين يبحثون عن تجربة عضوية راقية وعالية التخصيص في مجالات السفر ونمط الحياة وخدمات الكونسيرج.
+          </p>
+          <p class="tier-target tier-target-p ta">
+            Designed for Ultra-High-Net-Worth individuals seeking a premium, highly personalized membership in travel, lifestyle, and concierge services.
+          </p>
+          <div class="tier-div tdiv-p"></div>
+          <div class="tier-meta">
+            <div class="tm-item">
+              <span class="tm-lbl tm-lbl-p en">Users</span>
+              <span class="tm-val tm-val-p te">مستخدم واحد مسمّى</span>
+              <span class="tm-val tm-val-p ta">1 Named User</span>
+            </div>
+            <div class="tm-item">
+              <span class="tm-lbl tm-lbl-p en">Manager</span>
+              <span class="tm-val tm-val-p te">نسبة 1:5 مخصصة</span>
+              <span class="tm-val tm-val-p ta">1:5 Dedicated Ratio</span>
+            </div>
+            <div class="tm-item">
+              <span class="tm-lbl tm-lbl-p en">Access</span>
+              <span class="tm-val tm-val-p te">بالتقديم المباشر أو الترشيح</span>
+              <span class="tm-val tm-val-p ta">Direct Application or Referral</span>
+            </div>
+            <div class="tm-item">
+              <span class="tm-lbl tm-lbl-p en">Profile</span>
+              <span class="tm-val tm-val-p te">نخبة المجتمع</span>
+              <span class="tm-val tm-val-p ta">Elite Society</span>
+            </div>
+          </div>
+          <div class="tier-div tdiv-p"></div>
+          <ul class="tier-features">
+            <li class="tf"><span class="tf-dot tfd-p"></span><span class="tf-p te">Lifestyle Manager مخصص وخدمة استباقية</span><span class="tf-p ta">Dedicated Lifestyle Manager & proactive service</span></li>
+            <li class="tf"><span class="tf-dot tfd-p"></span><span class="tf-p te">تخطيط السفر ونمط الحياة بالكامل</span><span class="tf-p ta">Complete travel & lifestyle planning</span></li>
+            <li class="tf"><span class="tf-dot tfd-p"></span><span class="tf-p te">وصول للفنادق والفلل والطيران الخاص</span><span class="tf-p ta">Access to hotels, villas & private aviation</span></li>
+            <li class="tf"><span class="tf-dot tfd-p"></span><span class="tf-p te">تجارب حصرية للأعضاء فقط</span><span class="tf-p ta">Member-only exclusive experiences</span></li>
+            <li class="tf"><span class="tf-dot tfd-p"></span><span class="tf-p te">دعم صحي وطبي وعافية</span><span class="tf-p ta">Health, medical & wellness coordination</span></li>
+            <li class="tf"><span class="tf-dot tfd-p"></span><span class="tf-p te">دعم راقٍ على مدار الساعة</span><span class="tf-p ta">Premium 24/7 support</span></li>
+            <li class="tf"><span class="tf-dot tfd-p"></span><span class="tf-p te">تقرير سنوي Year in Review</span><span class="tf-p ta">Annual Year in Review report</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- BLACK -->
+      <div class="tier-black">
+        <div class="tier-inner">
+          <span class="tier-badge tbadge-b en">Estate · Multi-User</span>
+          <div class="tier-name tier-name-b">WOSOL<br>BLACK</div>
+          <p class="tier-target tier-target-b te">
+            بلاك هي عضوية عالية القيمة متعددة المستخدمين، مُصممة للقصور الملكية والمنازل الرفيعة الكبيرة، توفّر نظام تشغيل كامل لما يصل إلى عشرة مستخدمين مسمّين.
+          </p>
+          <p class="tier-target tier-target-b ta">
+            Black is a high-value multi-user membership designed for royal palaces and distinguished large estates, providing a complete operating system for up to ten named users.
+          </p>
+          <div class="tier-div tdiv-b"></div>
+          <div class="tier-meta">
+            <div class="tm-item">
+              <span class="tm-lbl tm-lbl-b en">Users</span>
+              <span class="tm-val tm-val-b te">حتى 10 مستخدمين مسمّين</span>
+              <span class="tm-val tm-val-b ta">Up to 10 Named Users</span>
+            </div>
+            <div class="tm-item">
+              <span class="tm-lbl tm-lbl-b en">Manager</span>
+              <span class="tm-val tm-val-b te">نسبة 1:5 موحدة للقصر</span>
+              <span class="tm-val tm-val-b ta">1:5 Estate-Wide Ratio</span>
+            </div>
+            <div class="tm-item">
+              <span class="tm-lbl tm-lbl-b en">Access</span>
+              <span class="tm-val tm-val-b te">بعد تقييم حجم القصر والتعقيد</span>
+              <span class="tm-val tm-val-b ta">After Estate Size & Complexity Assessment</span>
+            </div>
+            <div class="tm-item">
+              <span class="tm-lbl tm-lbl-b en">System</span>
+              <span class="tm-val tm-val-b te">Private Estate OS</span>
+              <span class="tm-val tm-val-b ta">Private Estate Operating System</span>
+            </div>
+          </div>
+          <div class="tier-div tdiv-b"></div>
+          <ul class="tier-features">
+            <li class="tf"><span class="tf-dot tfd-b"></span><span class="tf-b te">كل ميزات Premier لجميع مستخدمي القصر</span><span class="tf-b ta">All Premier features for all estate users</span></li>
+            <li class="tf"><span class="tf-dot tfd-b"></span><span class="tf-b te">تنسيق الضيافة والتشغيل على مستوى القصر</span><span class="tf-b ta">Estate-level hospitality & operations coordination</span></li>
+            <li class="tf"><span class="tf-dot tfd-b"></span><span class="tf-b te">دعم الأسرة والمرافقين والفريق المنزلي</span><span class="tf-b ta">Family, companions & household team support</span></li>
+            <li class="tf"><span class="tf-dot tfd-b"></span><span class="tf-b te">Estate Dashboard داخلي للإدارة</span><span class="tf-b ta">Internal Estate Dashboard for management</span></li>
+            <li class="tf"><span class="tf-dot tfd-b"></span><span class="tf-b te">صلاحيات فرعية مخصصة لكل مستخدم</span><span class="tf-b ta">Custom sub-permissions per user</span></li>
+            <li class="tf"><span class="tf-dot tfd-b"></span><span class="tf-b te">بروتوكول خصوصية عالٍ وحساسية إعلامية</span><span class="tf-b ta">High-privacy protocol & media sensitivity</span></li>
+            <li class="tf"><span class="tf-dot tfd-b"></span><span class="tf-b te">تنسيق التحركات الجماعية والأسطول</span><span class="tf-b ta">Group movement & fleet coordination</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- IMPERIAL -->
+      <div class="tier-imperial">
+        <div class="tier-inner">
+          <span class="tier-badge tbadge-i en">Royal · By Invitation Only</span>
+          <div class="tier-name tier-name-i">WOSOL<br>IMPERIAL</div>
+          <p class="tier-target tier-target-i te">
+            إمبيريال هي عضوية حصرية بالدعوة فقط، مخصصة لأفراد العائلات الملكية وكبار الشخصيات الرسمية. تقوم على السرية المطلقة والأولوية التنفيذية والبروتوكول العالي.
+          </p>
+          <p class="tier-target tier-target-i ta">
+            Imperial is an exclusive invitation-only membership for royal family members and senior official personalities. Built on absolute confidentiality, executive priority, and high protocol.
+          </p>
+          <div class="tier-div tdiv-i"></div>
+          <div class="tier-meta">
+            <div class="tm-item">
+              <span class="tm-lbl tm-lbl-i en">Users</span>
+              <span class="tm-val tm-val-i te">مستخدم واحد بدعوة خاصة</span>
+              <span class="tm-val tm-val-i ta">1 User by Private Invitation</span>
+            </div>
+            <div class="tm-item">
+              <span class="tm-lbl tm-lbl-i en">Manager</span>
+              <span class="tm-val tm-val-i te">نسبة 1:1 أو 1:2 حصرياً</span>
+              <span class="tm-val tm-val-i ta">Exclusive 1:1 or 1:2 Ratio</span>
+            </div>
+            <div class="tm-item">
+              <span class="tm-lbl tm-lbl-i en">Access</span>
+              <span class="tm-val tm-val-i te">بالدعوة أو الإحالة التنفيذية فقط</span>
+              <span class="tm-val tm-val-i ta">By Invitation or Executive Referral Only</span>
+            </div>
+            <div class="tm-item">
+              <span class="tm-lbl tm-lbl-i en">Footprint</span>
+              <span class="tm-val tm-val-i te">Zero Digital Footprint</span>
+              <span class="tm-val tm-val-i ta">Zero Digital Footprint</span>
+            </div>
+          </div>
+          <div class="tier-div tdiv-i"></div>
+          <ul class="tier-features">
+            <li class="tf"><span class="tf-dot tfd-i"></span><span class="tf-i te">جميع ميزات Premier و Black</span><span class="tf-i ta">All Premier & Black features</span></li>
+            <li class="tf"><span class="tf-dot tfd-i"></span><span class="tf-i te">Executive Protocol Officer مخصص</span><span class="tf-i ta">Dedicated Executive Protocol Officer</span></li>
+            <li class="tf"><span class="tf-dot tfd-i"></span><span class="tf-i te">Silent Execution — تنفيذ لا يُرى</span><span class="tf-i ta">Silent Execution — invisible management</span></li>
+            <li class="tf"><span class="tf-dot tfd-i"></span><span class="tf-i te">Zero Digital Footprint مطلق</span><span class="tf-i ta">Absolute Zero Digital Footprint</span></li>
+            <li class="tf"><span class="tf-dot tfd-i"></span><span class="tf-i te">خط مباشر حصري على مدار الساعة</span><span class="tf-i ta">Exclusive direct line around the clock</span></li>
+            <li class="tf"><span class="tf-dot tfd-i"></span><span class="tf-i te">أعلى أولوية مطلقة في الخدمة</span><span class="tf-i ta">Absolute highest service priority</span></li>
+            <li class="tf"><span class="tf-dot tfd-i"></span><span class="tf-i te">بروتوكول ملكي وحساسية إعلامية صارمة</span><span class="tf-i ta">Royal protocol & strict media sensitivity</span></li>
+          </ul>
+          <span class="restricted-badge en">By Private Invitation Only · لا يُعلن</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BENEFITS MATRIX ══ -->
+<section class="section section-dark">
+  <div class="wrap">
+    <span class="sec-label-d sec-label en">Benefits Matrix</span>
+    <h2 class="sec-title-d te">مصفوفة المزايا الكاملة</h2>
+    <h2 class="sec-title-d ta">Full Benefits Matrix</h2>
+    <div class="gold-div"></div>
+    <div style="overflow-x:auto;">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th style="text-align:right;"><span class="te">الميزة</span><span class="ta">Feature</span></th>
+            <th>PREMIER</th>
+            <th>BLACK</th>
+            <th>IMPERIAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="te">Lifestyle Manager مخصص</span><span class="ta">Dedicated Lifestyle Manager</span></td>
+            <td><span class="mcheck mcheck-p">✦</span></td>
+            <td><span class="mcheck mcheck-b">✦</span></td>
+            <td><span class="mcheck mcheck-i">✦</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">خدمة استباقية (Proactive Intelligence)</span><span class="ta">Proactive Intelligence Service</span></td>
+            <td><span class="mcheck mcheck-p">✦</span></td>
+            <td><span class="mcheck mcheck-b">✦</span></td>
+            <td><span class="mcheck mcheck-i">✦</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">تجارب حصرية للأعضاء فقط</span><span class="ta">Member-only Exclusive Experiences</span></td>
+            <td><span class="mcheck mcheck-p">✦</span></td>
+            <td><span class="mcheck mcheck-b">✦</span></td>
+            <td><span class="mcheck mcheck-i">✦</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">تخطيط السفر والإقامة</span><span class="ta">Travel & Stay Planning</span></td>
+            <td><span class="mcheck mcheck-p">✦</span></td>
+            <td><span class="mcheck mcheck-b">✦</span></td>
+            <td><span class="mcheck mcheck-i">✦</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">الطيران الخاص واليخوت</span><span class="ta">Private Aviation & Yachts</span></td>
+            <td><span class="mcheck mcheck-p">✦</span></td>
+            <td><span class="mcheck mcheck-b">✦</span></td>
+            <td><span class="mcheck mcheck-i">✦</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">الدعم الصحي والطبي</span><span class="ta">Health & Medical Support</span></td>
+            <td><span class="mcheck mcheck-p">✦</span></td>
+            <td><span class="mcheck mcheck-b">✦</span></td>
+            <td><span class="mcheck mcheck-i">✦</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">تقرير سنوي (Year in Review)</span><span class="ta">Annual Year in Review Report</span></td>
+            <td><span class="mcheck mcheck-p">✦</span></td>
+            <td><span class="mcheck mcheck-b">✦</span></td>
+            <td><span class="mcheck mcheck-i">✦</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">حسابات متعددة المستخدمين</span><span class="ta">Multi-User Accounts</span></td>
+            <td><span class="dash">—</span></td>
+            <td><span class="mcheck mcheck-b">✦</span></td>
+            <td><span class="dash">—</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">Private Estate OS (تشغيل القصر)</span><span class="ta">Private Estate Operating System</span></td>
+            <td><span class="dash">—</span></td>
+            <td><span class="mcheck mcheck-b">✦</span></td>
+            <td><span class="dash">—</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">Estate Dashboard داخلي</span><span class="ta">Internal Estate Dashboard</span></td>
+            <td><span class="dash">—</span></td>
+            <td><span class="mcheck mcheck-b">✦</span></td>
+            <td><span class="dash">—</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">بروتوكول تنفيذي مخصص</span><span class="ta">Dedicated Executive Protocol</span></td>
+            <td><span class="dash">—</span></td>
+            <td><span class="dash">—</span></td>
+            <td><span class="mcheck mcheck-i">✦</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">Zero Digital Footprint</span><span class="ta">Zero Digital Footprint</span></td>
+            <td><span class="dash">—</span></td>
+            <td><span class="dash">—</span></td>
+            <td><span class="mcheck mcheck-i">✦</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">Silent Execution (تنفيذ لا يُرى)</span><span class="ta">Silent Execution</span></td>
+            <td><span class="dash">—</span></td>
+            <td><span class="dash">—</span></td>
+            <td><span class="mcheck mcheck-i">✦</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">نسبة مدير الحياة</span><span class="ta">Lifestyle Manager Ratio</span></td>
+            <td style="text-align:center;font-family:'Poppins',sans-serif;font-weight:700;color:var(--n2);">1:5</td>
+            <td style="text-align:center;font-family:'Poppins',sans-serif;font-weight:700;color:var(--n3);">1:5</td>
+            <td style="text-align:center;font-family:'Poppins',sans-serif;font-weight:700;color:var(--gold);">1:1 – 1:2</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COMPARISON OLD VS NEW ══ -->
+<section class="section section-white">
+  <div class="wrap">
+    <span class="sec-label en">Strategic Evolution</span>
+    <h2 class="sec-title te">من الهيكل القديم إلى النموذج المطوّر</h2>
+    <h2 class="sec-title ta">From Old Structure to the Developed Model</h2>
+    <div class="gold-div"></div>
+    <p class="sec-sub te">تطور واضح في كل بُعد من أبعاد الخدمة — من الاشتراك التقليدي إلى علاقة الشراكة الاستراتيجية.</p>
+    <p class="sec-sub ta">A clear evolution across every service dimension — from traditional subscription to strategic partnership.</p>
+
+    <div style="overflow-x:auto;">
+      <table class="cmp-table">
+        <thead>
+          <tr>
+            <th><span class="te">البُعد</span><span class="ta">Dimension</span></th>
+            <th><span class="te">الهيكل القديم</span><span class="ta">Old Structure</span></th>
+            <th class="new-col"><span class="te">النموذج المطوّر ✦</span><span class="ta">Developed Model ✦</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="te">فلسفة العضوية</span><span class="ta">Membership Philosophy</span></td>
+            <td><span class="te">اشتراك تقليدي بخدمات محددة</span><span class="ta">Traditional subscription with fixed services</span></td>
+            <td class="new-col"><span class="te">علاقة شراكة استراتيجية طويلة الأمد</span><span class="ta">Long-term strategic partnership relationship</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">طريقة القبول</span><span class="ta">Admission Method</span></td>
+            <td><span class="te">اختيار مباشر وشراء</span><span class="ta">Direct selection and purchase</span></td>
+            <td class="new-col"><span class="te">Apply → Assessment → Recommendation</span><span class="ta">Apply → Assessment → Recommendation</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">مدير الحياة</span><span class="ta">Lifestyle Manager</span></td>
+            <td><span class="te">فريق عام مشترك</span><span class="ta">General shared team</span></td>
+            <td class="new-col"><span class="te">مدير مخصص بنسب محددة (1:5 أو 1:1)</span><span class="ta">Dedicated manager with defined ratios (1:5 or 1:1)</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">طبيعة الخدمة</span><span class="ta">Service Nature</span></td>
+            <td><span class="te">عند الطلب فقط</span><span class="ta">On-demand only</span></td>
+            <td class="new-col"><span class="te">استباقية مبنية على Client Intelligence Profile</span><span class="ta">Proactive, built on Client Intelligence Profile</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">إدارة القصور</span><span class="ta">Estate Management</span></td>
+            <td><span class="te">غير متوفرة</span><span class="ta">Not available</span></td>
+            <td class="new-col"><span class="te">Black: Private Estate OS لحتى 10 مستخدمين</span><span class="ta">Black: Private Estate OS for up to 10 users</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">الخصوصية الرقمية</span><span class="ta">Digital Privacy</span></td>
+            <td><span class="te">بروتوكول قياسي</span><span class="ta">Standard protocol</span></td>
+            <td class="new-col"><span class="te">Imperial: Zero Digital Footprint + Silent Execution</span><span class="ta">Imperial: Zero Digital Footprint + Silent Execution</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">قياس القيمة</span><span class="ta">Value Measurement</span></td>
+            <td><span class="te">عدد الطلبات</span><span class="ta">Number of requests</span></td>
+            <td class="new-col"><span class="te">Year in Review + KPIs مبنية على الجودة</span><span class="ta">Year in Review + quality-based KPIs</span></td>
+          </tr>
+          <tr>
+            <td><span class="te">الإيراد</span><span class="ta">Revenue</span></td>
+            <td><span class="te">معاملات منفصلة</span><span class="ta">Separate transactions</span></td>
+            <td class="new-col"><span class="te">عضويات سنوية متكررة + CLV عالية</span><span class="ta">Recurring annual memberships + high CLV</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ADMISSION PROCESS ══ -->
+<section class="section section-dark" id="admission">
+  <div class="wrap">
+    <span class="sec-label-d sec-label en">Admission Process</span>
+    <h2 class="sec-title-d te">مسار قبول العضوية</h2>
+    <h2 class="sec-title-d ta">Membership Admission Process</h2>
+    <div class="gold-div"></div>
+    <p class="sec-sub-d te">
+      العضوية في وُصُول لا تُشترى — تُرشَّح. كل خطوة في المسار مصممة لضمان توافق العضوية مع نمط حياة العميل الفعلي.
+    </p>
+    <p class="sec-sub-d ta">
+      WOSOL membership is not purchased — it is recommended. Every step in the process is designed to ensure the membership aligns with the client's actual lifestyle.
+    </p>
+
+    <div class="g2" style="gap:48px;">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><span class="tl-num en">01</span></div>
+          <div class="tl-content">
+            <span class="tl-en">Apply</span>
+            <div class="tl-title te">تقديم الطلب</div>
+            <div class="tl-title ta">Application</div>
+            <p class="tl-body te">عبر التطبيق أو بالترشيح من عضو حالي أو Membership Advisor. لا يتم الإعلان عن المستويات بشكل مفتوح.</p>
+            <p class="tl-body ta">Via the app, referral from a current member, or Membership Advisor. Tiers are not advertised openly.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><span class="tl-num en">02</span></div>
+          <div class="tl-content">
+            <span class="tl-en">Lifestyle Assessment</span>
+            <div class="tl-title te">تقييم نمط الحياة</div>
+            <div class="tl-title ta">Lifestyle Assessment</div>
+            <p class="tl-body te">جلسة مع Membership Advisor لفهم نمط الحياة، متطلبات الخصوصية، وحجم الدعم المطلوب.</p>
+            <p class="tl-body ta">A session with a Membership Advisor to understand lifestyle, privacy requirements, and the scope of support needed.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><span class="tl-num en">03</span></div>
+          <div class="tl-content">
+            <span class="tl-en">Recommendation</span>
+            <div class="tl-title te">الترشيح</div>
+            <div class="tl-title ta">Recommendation</div>
+            <p class="tl-body te">يُرشَّح العميل للعضوية المناسبة — Premier أو Black أو Imperial — بناءً على نتائج التقييم وليس اختياره.</p>
+            <p class="tl-body ta">The client is recommended the suitable membership — Premier, Black, or Imperial — based on assessment results, not personal choice.</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><span class="tl-num en">04</span></div>
+          <div class="tl-content">
+            <span class="tl-en">Approval & Onboarding</span>
+            <div class="tl-title te">الموافقة والتفعيل</div>
+            <div class="tl-title ta">Approval & Onboarding</div>
+            <p class="tl-body te">Private Onboarding مخصص مع بناء Client Intelligence Profile من أول جلسة.</p>
+            <p class="tl-body ta">A personalized Private Onboarding with the building of a Client Intelligence Profile from the first session.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><span class="tl-num en">05</span></div>
+          <div class="tl-content">
+            <span class="tl-en">White-Glove Activation</span>
+            <div class="tl-title te">تفعيل احترافي</div>
+            <div class="tl-title ta">White-Glove Activation</div>
+            <p class="tl-body te">تفعيل العضوية بأعلى معايير الخدمة، مع تعيين مدير الحياة وتحديد قنوات التواصل الحصرية.</p>
+            <p class="tl-body ta">Membership activation to the highest service standards, with Lifestyle Manager assignment and exclusive communication channels.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><span class="tl-num en">06</span></div>
+          <div class="tl-content">
+            <span class="tl-en">First 30 Days Experience</span>
+            <div class="tl-title te">أول 30 يوم</div>
+            <div class="tl-title ta">First 30 Days</div>
+            <p class="tl-body te">فترة إثبات الجودة — يُقيَّم مستوى الخدمة، تُحدَّث التفضيلات، وتُبنى الثقة من خلال تجربة استثنائية.</p>
+            <p class="tl-body ta">Quality proof period — service level is assessed, preferences are updated, and trust is built through an exceptional experience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kld" style="margin-top:36px;">
+      <span class="te">المدخل الوحيد: Apply → Assessment → Recommendation — وليس: اختر وادفع.</span>
+      <span class="ta">The only entry: Apply → Assessment → Recommendation — not: Choose and Pay.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ KPI ══ -->
+<section class="section section-light" id="kpi">
+  <div class="wrap">
+    <span class="sec-label en">Performance KPIs</span>
+    <h2 class="sec-title te">مؤشرات الأداء — الجودة لا الكمية</h2>
+    <h2 class="sec-title ta">Performance KPIs — Quality Over Quantity</h2>
+    <div class="gold-div"></div>
+    <p class="sec-sub te">
+      الهدف ليس أكبر عدد من العملاء، بل أعلى مستوى من العلاقات. هذه المؤشرات تضمن بقاء القيمة في صميم الأداء.
+    </p>
+    <p class="sec-sub ta">
+      The goal is not the largest client base, but the highest quality relationships. These KPIs ensure value remains at the core of performance.
+    </p>
+
+    <div class="kpi-grid">
+      <div class="kpi-cell">
+        <span class="kpi-val en">40%+</span>
+        <span class="kpi-lbl en">Conversion Rate</span>
+        <div class="kpi-name te">معدل تحويل الطلبات المؤهلة</div>
+        <div class="kpi-name ta">Qualified Leads Conversion Rate</div>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-val en">88%+</span>
+        <span class="kpi-lbl en">Retention Year 1</span>
+        <div class="kpi-name te">الاحتفاظ بالأعضاء — السنة الأولى</div>
+        <div class="kpi-name ta">Member Retention — Year 1</div>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-val en">90+</span>
+        <span class="kpi-lbl en">NPS Score</span>
+        <div class="kpi-name te">صافي المروجين</div>
+        <div class="kpi-name ta">Net Promoter Score</div>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-val en">35%+</span>
+        <span class="kpi-lbl en">Referral Rate</span>
+        <div class="kpi-name te">معدل الإحالات من الأعضاء الحاليين</div>
+        <div class="kpi-name ta">Referral Rate from Current Members</div>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-val en">40%+</span>
+        <span class="kpi-lbl en">Proactive Services</span>
+        <div class="kpi-name te">نسبة الخدمات الاستباقية</div>
+        <div class="kpi-name ta">Proactive Services Ratio</div>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-val en">↑ CLV</span>
+        <span class="kpi-lbl en">Lifetime Value</span>
+        <div class="kpi-name te">قيمة العميل على مدى الاشتراك</div>
+        <div class="kpi-name ta">Client Lifetime Value Growth</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RESEARCH SOURCES ══ -->
+<section class="section section-dark" id="research">
+  <div class="wrap">
+    <span class="sec-label-d sec-label en">Research Foundation</span>
+    <h2 class="sec-title-d te">المكتبة البحثية — أسس النموذج</h2>
+    <h2 class="sec-title-d ta">Research Library — Model Foundations</h2>
+    <div class="gold-div"></div>
+
+    <div class="sources-summary">
+      <p style="font-size:15px;color:rgba(237,233,227,.6);line-height:1.85;max-width:720px;" class="te">
+        تم تطوير هذا النموذج بناءً على دراسة أكثر من 40 مصدرًا عالميًا متخصصًا في الكونسيرج الفاخر، نماذج العضويات، وخدمات UHNW. الهدف ليس نسخ المنافسين — بل استخلاص أفضل الممارسات وبناء نموذج WOSOL الأصيل.
+      </p>
+      <p style="font-size:15px;color:rgba(237,233,227,.6);line-height:1.85;max-width:720px;" class="ta">
+        This model was developed based on the study of over 40 global specialized sources in luxury concierge, membership models, and UHNW services. The goal is not to copy competitors — but to extract best practices and build an authentic WOSOL model.
+      </p>
+      <div class="sources-stats">
+        <div class="src-stat"><span class="src-stat-n en">43</span><span class="src-stat-l te">مصدر بحثي</span><span class="src-stat-l ta">Research Sources</span></div>
+        <div class="src-stat"><span class="src-stat-n en">8</span><span class="src-stat-l te">منافس مباشر</span><span class="src-stat-l ta">Direct Competitors</span></div>
+        <div class="src-stat"><span class="src-stat-n en">6</span><span class="src-stat-l te">تصنيفات</span><span class="src-stat-l ta">Categories</span></div>
+        <div class="src-stat"><span class="src-stat-n en">3</span><span class="src-stat-l te">مستويات عضوية</span><span class="src-stat-l ta">Membership Tiers</span></div>
+      </div>
+    </div>
+
+    <details>
+      <summary><span class="te">المنافسون المباشرون — Direct Competitors</span><span class="ta">Direct Competitors</span></summary>
+      <div class="src-list">
+        <div class="src-item">
+          <span class="src-item-badge sb-comp en">Competitor</span>
+          <div>
+            <div class="src-item-title">Knightsbridge Circle</div>
+            <p class="src-item-desc te">نموذج فائق الفخامة قائم على العضوية المحدودة والدعوة. مرجع رئيسي لـ Invitation-Only Membership وخدمات UHNW.</p>
+            <p class="src-item-desc ta">Ultra-luxury invitation-only membership model. Primary reference for Invitation-Only Membership and UHNW services.</p>
+            <a href="https://www.knightsbridgecircle.com/" target="_blank" rel="noopener" class="src-link en">Visit Website ↗</a>
+          </div>
+        </div>
+        <div class="src-item">
+          <span class="src-item-badge sb-comp en">Competitor</span>
+          <div>
+            <div class="src-item-title">Quintessentially</div>
+            <p class="src-item-desc te">من أهم المراجع في نماذج Dedicated Lifestyle Manager والخدمات متعددة المجالات. تقدم قائمة A-Z شاملة للخدمات.</p>
+            <p class="src-item-desc ta">One of the most important references for Dedicated Lifestyle Manager models and multi-domain services. Offers a comprehensive A-Z service list.</p>
+            <a href="https://quintessentially.com/membership" target="_blank" rel="noopener" class="src-link en">Visit Website ↗</a>
+          </div>
+        </div>
+        <div class="src-item">
+          <span class="src-item-badge sb-comp en">Competitor</span>
+          <div>
+            <div class="src-item-title">Ten Lifestyle Group</div>
+            <p class="src-item-desc te">نموذج Lifestyle Concierge يعتمد على التقنية والشراكات. مرجع لدمج التقنية مع الخدمة البشرية.</p>
+            <p class="src-item-desc ta">Lifestyle Concierge model combining technology and partnerships. Reference for integrating technology with human service.</p>
+            <a href="https://www.tenlifestylegroup.com/" target="_blank" rel="noopener" class="src-link en">Visit Website ↗</a>
+          </div>
+        </div>
+        <div class="src-item">
+          <span class="src-item-badge sb-comp en">Competitor</span>
+          <div>
+            <div class="src-item-title">Sienna Charles</div>
+            <p class="src-item-desc te">نموذج عضوية فاخر يركز على السفر الخاص وخدمة عملاء UHNW. مرجع لفهم لغة الفخامة في التخصيص.</p>
+            <p class="src-item-desc ta">Luxury membership model focused on private travel and UHNW client service. Reference for understanding luxury personalization language.</p>
+            <a href="https://siennacharles.com/become-a-member" target="_blank" rel="noopener" class="src-link en">Visit Website ↗</a>
+          </div>
+        </div>
+        <div class="src-item">
+          <span class="src-item-badge sb-comp en">Competitor</span>
+          <div>
+            <div class="src-item-title">John Paul</div>
+            <p class="src-item-desc te">شركة كونسيرج عالمية متخصصة في الحلول المؤسسية B2B. مرجع لنماذج الخدمة المؤسسية والشراكات.</p>
+            <p class="src-item-desc ta">Global concierge company specializing in B2B corporate solutions. Reference for corporate service models and partnerships.</p>
+            <a href="https://www.johnpaul.com/en" target="_blank" rel="noopener" class="src-link en">Visit Website ↗</a>
+          </div>
+        </div>
+        <div class="src-item">
+          <span class="src-item-badge sb-comp en">Competitor</span>
+          <div>
+            <div class="src-item-title">Club ELM</div>
+            <p class="src-item-desc te">نموذج Membership Club فاخر — مرجع لفهم لغة العضوية، الندرة، والانتماء الحصري.</p>
+            <p class="src-item-desc ta">Luxury Membership Club model — reference for understanding membership language, scarcity, and exclusive belonging.</p>
+            <a href="https://clubelm.com/" target="_blank" rel="noopener" class="src-link en">Visit Website ↗</a>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="te">نماذج العضويات — Membership Models</span><span class="ta">Membership Models</span></summary>
+      <div class="src-list">
+        <div class="src-item">
+          <span class="src-item-badge sb-art en">Model</span>
+          <div>
+            <div class="src-item-title">The Sincura Group</div>
+            <p class="src-item-desc te">مرجع لفهم لغة الوصول الحصري وتجارب VIP. يمكن الاستفادة منه في تصميم Member-only Experiences.</p>
+            <p class="src-item-desc ta">Reference for exclusive access language and VIP experiences. Useful for designing Member-only Experiences.</p>
+            <a href="https://thesincuragroup.com/join/join-concierge.html" target="_blank" rel="noopener" class="src-link en">Visit Website ↗</a>
+          </div>
+        </div>
+        <div class="src-item">
+          <span class="src-item-badge sb-art en">Model</span>
+          <div>
+            <div class="src-item-title">Membership Structure — LinkedIn Article</div>
+            <p class="src-item-desc te">مقال متخصص في بنى عضويات الكونسيرج — مرجع لتصميم هياكل العضوية وآليات القبول.</p>
+            <p class="src-item-desc ta">Specialized article on concierge membership structures — reference for designing membership structures and admission mechanisms.</p>
+            <a href="https://www.linkedin.com/pulse/things-consider-concierge-membership-structures-practice-scott-pope" target="_blank" rel="noopener" class="src-link en">Read Article ↗</a>
+          </div>
+        </div>
+        <div class="src-item">
+          <span class="src-item-badge sb-art en">Model</span>
+          <div>
+            <div class="src-item-title">Membership-Based Luxury Concierge</div>
+            <p class="src-item-desc te">مقال متخصص في نموذج عضويات الكونسيرج الفاخر ومزاياه مقارنةً بالخدمة التقليدية.</p>
+            <p class="src-item-desc ta">Article on the luxury concierge membership model and its advantages over traditional service.</p>
+            <a href="https://www.willjordanmgmt.com/landlord-tips-resources/membership-based-luxury-concierge" target="_blank" rel="noopener" class="src-link en">Read Article ↗</a>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="te">المقالات والتقارير الصناعية — Industry Articles</span><span class="ta">Industry Articles & Reports</span></summary>
+      <div class="src-list">
+        <div class="src-item">
+          <span class="src-item-badge sb-rpt en">Media</span>
+          <div>
+            <div class="src-item-title">New York Times — Private Concierge for the Wealthy</div>
+            <p class="src-item-desc te">مقال NYT عن خدمات الكونسيرج الخاص للأثرياء — مرجع لفهم الاتجاهات الحديثة في السوق.</p>
+            <p class="src-item-desc ta">NYT article on private concierge services for the wealthy — reference for understanding current market trends.</p>
+            <a href="https://www.nytimes.com/2025/10/04/business/dealbook/your-wealthiest-friend-has-a-private-concierge.html" target="_blank" rel="noopener" class="src-link en">Read Article ↗</a>
+          </div>
+        </div>
+        <div class="src-item">
+          <span class="src-item-badge sb-rpt en">Industry</span>
+          <div>
+            <div class="src-item-title">Tatler — Best Luxury Concierge Services</div>
+            <p class="src-item-desc te">تصنيف Tatler لأفضل خدمات الكونسيرج الفاخرة — مرجع للمعايير والتوقعات الصناعية.</p>
+            <p class="src-item-desc ta">Tatler's ranking of the best luxury concierge services — reference for industry standards and expectations.</p>
+            <a href="https://www.tatler.com/article/best-luxury-concierge-services" target="_blank" rel="noopener" class="src-link en">Read Article ↗</a>
+          </div>
+        </div>
+        <div class="src-item">
+          <span class="src-item-badge sb-rpt en">Report</span>
+          <div>
+            <div class="src-item-title">Business Management Review — Top Concierge Providers 2024</div>
+            <p class="src-item-desc te">تقرير متخصص بأفضل مزودي خدمات الكونسيرج 2024 — مرجع مقارنة شامل.</p>
+            <p class="src-item-desc ta">Specialized report on top concierge service providers 2024 — comprehensive comparison reference.</p>
+            <a href="https://concierge-services.businessmanagementreview.com/vendors/top-concierge-services-providers-2024.html" target="_blank" rel="noopener" class="src-link en">Read Report ↗</a>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="te">المصادر الرسمية لـ WOSOL — WOSOL Official</span><span class="ta">WOSOL Official Sources</span></summary>
+      <div class="src-list">
+        <div class="src-item">
+          <span class="src-item-badge sb-wos en">Official</span>
+          <div>
+            <div class="src-item-title">WOSOL Concierge — الموقع الرسمي</div>
+            <p class="src-item-desc te">الموقع الرسمي الحالي لـ WOSOL Concierge — مرجع لفهم الهوية الحالية والخدمات المقدمة.</p>
+            <p class="src-item-desc ta">The current official website of WOSOL Concierge — reference for understanding the current brand identity and offered services.</p>
+            <a href="https://wosolconcierge.com/en/" target="_blank" rel="noopener" class="src-link en">Visit Website ↗</a>
+          </div>
+        </div>
+        <div class="src-item">
+          <span class="src-item-badge sb-wos en">Official</span>
+          <div>
+            <div class="src-item-title">WOSOL Concierge — صفحة الخدمات</div>
+            <p class="src-item-desc te">صفحة الخدمات الرسمية — مرجع لنطاق الخدمات الحالية وكيفية تطويرها ضمن النموذج الجديد.</p>
+            <p class="src-item-desc ta">Official services page — reference for the current scope of services and how to develop them within the new model.</p>
+            <a href="https://wosolconcierge.com/en/services/" target="_blank" rel="noopener" class="src-link en">Visit Website ↗</a>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <div class="kld" style="margin-top:28px;">
+      <span class="te">هذه المصادر لا تُستخدم للنسخ — بل لاستخلاص أفضل الممارسات وتطوير نموذج WOSOL الأصيل في السوق الخليجي.</span>
+      <span class="ta">These sources are not used for copying — but to extract best practices and develop an authentic WOSOL model in the Gulf market.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="section" id="contact">
+  <div class="cta-box">
+    <div class="cta-inner">
+      <span class="sec-label en" style="display:block;text-align:center;margin-bottom:16px;">Begin Your Journey</span>
+      <h2 class="sec-title-d" style="text-align:center;margin-bottom:16px;">
+        <span class="te">جاهز لحياة بلا تعقيد؟</span>
+        <span class="ta">Ready for a Life Without Complexity?</span>
+      </h2>
+      <div style="width:36px;height:2px;background:var(--gold);margin:0 auto 24px;"></div>
+      <p style="font-size:15.5px;color:rgba(237,233,227,.55);line-height:1.85;margin-bottom:36px;" class="te">
+        ابدأ بتقييم نمط حياتك. سيتواصل معك Membership Advisor متخصص لفهم احتياجاتك وترشيح العضوية الأنسب لك — بدون أي ضغط.
+      </p>
+      <p style="font-size:15.5px;color:rgba(237,233,227,.55);line-height:1.85;margin-bottom:36px;" class="ta">
+        Start with your lifestyle assessment. A specialized Membership Advisor will contact you to understand your needs and recommend the most suitable membership — without any pressure.
+      </p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="mailto:info@wosolconcierge.com?subject=Membership Assessment Request" class="hero-cta te">
+          ابدأ التقييم ←
+        </a>
+        <a href="mailto:membership@wosolconcierge.com?subject=Membership Assessment Request" class="hero-cta ta">
+          Begin Assessment →
+        </a>
+        <a href="tel:+966500009979" style="
+          display:inline-flex;align-items:center;
+          font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;
+          color:var(--gold);border:1px solid rgba(185,154,91,.4);padding:16px 32px;
+          transition:all .25s;
+        " class="te">+966 50 000 9979</a>
+        <a href="tel:+966500009979" style="
+          display:inline-flex;align-items:center;
+          font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;
+          color:var(--gold);border:1px solid rgba(185,154,91,.4);padding:16px 32px;
+          transition:all .25s;
+        " class="ta">+966 50 000 9979</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" style="text-decoration:none;">
+          <span class="nl-w">WOSOL</span>
+          <span class="nl-s" style="display:block;margin-top:3px;">CONCIERGE</span>
+        </a>
+        <p class="footer-tagline te">
+          منظومة عضويات متكاملة لأصحاب الثروات العالية — مبنية على الثقة، الحصرية، والفهم العميق.
+        </p>
+        <p class="footer-tagline ta">
+          A comprehensive membership system for ultra-high-net-worth individuals — built on trust, exclusivity, and deep understanding.
+        </p>
+      </div>
+      <div>
+        <span class="footer-col-title te">العضويات</span>
+        <span class="footer-col-title ta">Memberships</span>
+        <div class="footer-links">
+          <a href="#tiers">WOSOL Premier</a>
+          <a href="#tiers">WOSOL Black</a>
+          <a href="#tiers">WOSOL Imperial</a>
+          <a href="#admission"><span class="te">مسار القبول</span><span class="ta">Admission Process</span></a>
+        </div>
+      </div>
+      <div>
+        <span class="footer-col-title te">التواصل</span>
+        <span class="footer-col-title ta">Contact</span>
+        <div class="footer-links">
+          <a href="mailto:info@wosolconcierge.com">info@wosolconcierge.com</a>
+          <a href="tel:+966500009979">+966 50 000 9979</a>
+          <a href="https://wosolconcierge.com" target="_blank" rel="noopener">wosolconcierge.com</a>
+          <a href="https://www.linkedin.com/company/wosolconcierge" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy te">WOSOL Concierge · Membership Hub · مرجع تنفيذي · 2026</span>
+      <span class="footer-copy ta">WOSOL Concierge · Membership Hub · Executive Reference · 2026</span>
+      <span class="footer-copy en" style="opacity:.6;">Powered by WOSOL Concierge</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+'use strict';
+
+// ── LANGUAGE TOGGLE ──
+const root = document.documentElement;
+const langBtn = document.getElementById('langBtn');
+let lang = localStorage.getItem('wosol_lang') || 'ar';
+
+function applyLang(l) {
+  root.setAttribute('data-lang', l);
+  root.setAttribute('lang', l);
+  root.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+  langBtn.textContent = l === 'ar' ? 'EN' : 'AR';
+  lang = l;
+  localStorage.setItem('wosol_lang', l);
+}
+
+langBtn.addEventListener('click', () => applyLang(lang === 'ar' ? 'en' : 'ar'));
+applyLang(lang);
+
+// ── SMOOTH SCROLL ──
+function scroll2(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── MOBILE MENU ──
+let menuOpen = false;
+function toggleMenu() {
+  menuOpen = !menuOpen;
+  const nav = document.getElementById('topNav');
+  if (menuOpen) {
+    nav.style.flexDirection = 'column';
+    nav.style.height = 'auto';
+    nav.style.paddingBottom = '20px';
+    document.querySelector('.nav-links').style.display = 'flex';
+    document.querySelector('.nav-links').style.flexDirection = 'column';
+    document.querySelector('.nav-links').style.width = '100%';
+    document.querySelector('.nav-links').style.padding = '16px 0 0';
+    document.querySelector('.nav-links').style.gap = '4px';
+  } else {
+    nav.style.flexDirection = '';
+    nav.style.height = '';
+    nav.style.paddingBottom = '';
+    document.querySelector('.nav-links').style.display = '';
+    document.querySelector('.nav-links').style.flexDirection = '';
+    document.querySelector('.nav-links').style.width = '';
+    document.querySelector('.nav-links').style.padding = '';
+    document.querySelector('.nav-links').style.gap = '';
+  }
+}
+
+// ── SCROLL REVEAL ──
+const revealEls = document.querySelectorAll('.feel-card,.card,.card-d,.kpi-cell,.tier-premier,.tier-black,.tier-imperial');
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+      revObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+revealEls.forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = `opacity .55s ease ${i * 0.04}s, transform .55s ease ${i * 0.04}s`;
+  revObs.observe(el);
+});
+
+// ── ACTIVE NAV ──
+const sections = ['hero','philosophy','tiers','admission','kpi','research','contact'];
+const navLinks = document.querySelectorAll('.nav-link');
+const secObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.style.color = '');
+    }
+  });
+}, { threshold: 0.4 });
+sections.forEach(s => { const el = document.getElementById(s); if(el) secObs.observe(el); });
+</script>
+</body>
+</html>
